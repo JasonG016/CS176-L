@@ -5,7 +5,7 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class donationsTester {
-    public static void main(String[] args)throws FileNotFoundException {
+    public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
         System.out.print("Would you like to process donations now? (enter 'Yes' to continue): ");
         String response = input.nextLine();
@@ -27,17 +27,18 @@ public class donationsTester {
 
             while (fileScanner.hasNextLine()) {
                 String line = fileScanner.nextLine();
-                if (line.equals("<EOF>")) {
+                if ("<EOF>".equals(line)) {
                     break;
                 }
 
-                String[] parts = line.split(" ");
-                String category = parts[0].substring(1); // Remove "<" from the category
-                double donation = Double.parseDouble(parts[1]);
+                String[] parts = line.split(">");
+                if (parts.length == 2) {
+                    String category = parts[0].substring(1).trim();
+                    double donation = Double.parseDouble(parts[1].trim());
 
-                donations.processDonation(category, donation);
+                    donations.processDonation(category, donation);
+                }
             }
-            
 
             fileScanner.close();
         } catch (FileNotFoundException e) {
@@ -45,4 +46,3 @@ public class donationsTester {
         }
     }
 }
-

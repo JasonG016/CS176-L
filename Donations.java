@@ -17,20 +17,22 @@ public class Donations {
         amtOther = 0;
     }
 
-    public void processDonation(String cat, Double donation) {
-        if (cat.equalsIgnoreCase("individual")) {
+    public void processDonation(String cat, double donation) {
+        if ("individual donation".equals(cat)) {
             numIndividual++;
             amtIndividual += donation;
-        } else if (cat.equalsIgnoreCase("business")) {
+        } else if ("business donation".equals(cat)) {
             numBusiness++;
             amtBusiness += donation;
-        } else if (cat.equalsIgnoreCase("other")) {
+        } else if ("other donation".equals(cat)) {
             numOther++;
             amtOther += donation;
         }
 
-        System.out.println(cat + " donation amount: " + donation);
+       
     }
+
+    
 
     public void getStatistics() {
         System.out.println("Individual: #:" + numIndividual + " $" + amtIndividual);
