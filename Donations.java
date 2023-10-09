@@ -16,23 +16,36 @@ public class Donations {
         numOther = 0;
         amtOther = 0;
     }
-
     public void processDonation(String cat, double donation) {
         if ("individual donation".equals(cat)) {
-            numIndividual++;
-            amtIndividual += donation;
+            if (donation >= 0) {
+                numIndividual++;
+                amtIndividual += donation;
+            } else {
+                numIndividual--;
+                amtIndividual -= Math.abs(donation);
+            }
         } else if ("business donation".equals(cat)) {
-            numBusiness++;
-            amtBusiness += donation;
+            if (donation >= 0) {
+                numBusiness++;
+                amtBusiness += donation;
+            } else {
+                numBusiness--;
+                amtBusiness -= Math.abs(donation);
+            }
         } else if ("other donation".equals(cat)) {
-            numOther++;
-            amtOther += donation;
+            if (donation >= 0) {
+                numOther++;
+                amtOther += donation;
+            } else {
+                numOther--;
+                amtOther -= Math.abs(donation);
+            }
         }
 
-       
+        System.out.println(cat + " donation amount: " + donation);
     }
 
-    
 
     public void getStatistics() {
         System.out.println("Individual: #:" + numIndividual + " $" + amtIndividual);
