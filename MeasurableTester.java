@@ -1,7 +1,49 @@
 package interfaceV1;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class MeasurableTester {
     public static void main(String[] args) {
+        JFrame frame = new JFrame("Measurable Viewer");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setLayout(new FlowLayout());
+
+        JButton maxButton = new JButton("Maximum");
+        JButton minButton = new JButton("Minimum");
+        JButton avgButton = new JButton("Average");
+
+        frame.add(maxButton);
+        frame.add(minButton);
+        frame.add(avgButton);
+
+        maxButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                displayMetrics(1);
+            }
+        });
+
+        minButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                displayMetrics(2);
+            }
+        });
+
+        avgButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                displayMetrics(3);
+            }
+        });
+
+        frame.setSize(300, 100);
+        frame.setVisible(true);
+    }
+
+    private static void displayMetrics(int metricChoice) {
         // Countries
         System.out.println("Countries Data");
         Measurable[] countries = new Measurable[3];
@@ -52,3 +94,6 @@ public class MeasurableTester {
         System.out.println("Expected: 95");
     }
 }
+
+
+
